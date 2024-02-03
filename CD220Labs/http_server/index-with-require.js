@@ -3,7 +3,18 @@ const today = require('./today');
 
 const requestListener = function (req, res) {
   res.writeHead(200);
-  res.end(`Hello, World! The date today is ${today.getDate()}`);
+  let dateVal = today.getDate();
+  if (dateVal.getHours() > 6 && dateVal.getHours()<12) {
+    greeting = "Good Morning!"
+  } else if (dateVal.getHours() >=12 && dateVal.getHours()<18) {
+    greeting = "Good Afternoon!"
+  } else if (dateVal.getHours() >=18 && dateVal.getHours()<21) {
+    greeting = "Good Evening!"
+  } else {
+    greeting="Good Night!"
+  }
+
+  res.end(`Hello, ${greeting}`);
 }
 
 const port = 8080;
